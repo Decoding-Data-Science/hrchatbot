@@ -39,6 +39,8 @@ The Gradio interface now displays category buttons and a list of recommended que
 Pick a category, choose a suggested question or type your own, and the model retrieves
 relevant documents to answer using OpenAI's Chat API. The layout uses two columns with the title centered.
 
+If you want to display a logo in the UI, add a `logo.jpeg` image (170×170) to the project root. The application will use it if present.
+
 ## Folder Structure
 
 ```
