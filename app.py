@@ -100,16 +100,44 @@ if __name__ == "__main__":
 
     categories = sorted({Path(p).parts[0] for p in glob.glob('*/*.txt')})
     recommended = {
-        "all": ["Where can I find benefits information?", "How do I request time off?"],
-        "benefits": ["What does private medical insurance cover?", "How do I join the pension scheme?"],
-        "company": ["What is the company's mission?", "Where is the office located?"],
-        "guides": ["How do I submit an expense?", "Where is the hiring policy?"],
-        "roles": ["What does a data scientist do?", "How do career levels work?"],
-        "communities-of-practice": ["How can I join a community of practice?", "When do CoPs meet?"],
+        "all": [
+            "Where can I find benefits information?",
+            "How do I request time off?",
+            "What is TechScheme and how does it work?",
+            "What is chalet time?",
+        ],
+        "benefits": [
+            "What does private medical insurance cover?",
+            "How do I join the pension scheme?",
+            "What is TechScheme and how does it work?",
+        ],
+        "company": [
+            "What is the company's mission?",
+            "Where is the office located?",
+            "What is Made Tech's purpose?",
+        ],
+        "guides": [
+            "How do I submit an expense?",
+            "Where is the hiring policy?",
+            "What is chalet time?",
+            "How can I contribute to the handbook?",
+        ],
+        "roles": [
+            "What does a data scientist do?",
+            "How do career levels work?",
+        ],
+        "communities-of-practice": [
+            "How can I join a community of practice?",
+            "When do CoPs meet?",
+        ],
     }
 
     with gr.Blocks() as demo:
-        gr.Markdown("<h1 style='text-align: center;'>HR Chatbot</h1>")
+        with gr.Row():
+            logo_path = Path(__file__).resolve().parent / "logo.jpeg"
+            logo_value = str(logo_path) if logo_path.exists() else None
+            gr.Image(value=logo_value, width=170, height=170, show_label=False)
+            gr.Markdown("<h1 style='text-align: center; width:100%'>HR Chatbot</h1>")
         selected_category = gr.State("all")
 
         with gr.Row():
@@ -120,7 +148,7 @@ if __name__ == "__main__":
 
         with gr.Row():
             with gr.Column():
-                examples = gr.Radio(
+                examples = gr.Dropdown(
                     choices=recommended["all"],
                     label="Recommended questions",
                     value=recommended["all"][0]
