@@ -1,0 +1,14 @@
+openai>=1.0
+pinecone-client
+python-dotenv
+langchain>=0.1.0
+textsplitter
+bs4
+unstructured
+sentence-transformers
+faiss-cpu
+pydantic
+numpy
+scikit-learn
+pandas
+gradio
